@@ -1,6 +1,6 @@
 import streamlit as st
 from utils import download_video, summarize_video, get_transcript, convert_video_to_audio
-st.set_page_config(page_title="Summarize a Yotube Video",page_icon='/assets/icon2.png',layout='wide')
+st.set_page_config(page_title="Summarize a Yotube Video",page_icon='assets/icon2.png',layout='wide')
 
 def check_url(url):
     if url.startswith("https://www.youtube.com/"):
@@ -53,7 +53,7 @@ with st.container():
                         else:
                             progress_bar.progress(80,text='Generating summary...')
                             # show summary
-                            st.text_area(summary)
+                            st.text_area('Summary',summary,height=300)
                             progress_bar.progress(100,text='Completed!')
         else:
             st.error("Please enter a valid Youtube video link.")
