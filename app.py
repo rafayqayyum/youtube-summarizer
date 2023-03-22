@@ -1,12 +1,13 @@
 import streamlit as st
+import re
 from utils import download_video, summarize_video, get_transcript, convert_video_to_audio
 st.set_page_config(page_title="Summarize a Yotube Video",page_icon='assets/icon2.png',layout='wide')
 
 def check_url(url):
-    if url.startswith("https://www.youtube.com/"):
+    regex='(?:https?:\/\/)?(?:www\.)?youtu(?:\.be\/|be.com\/\S*(?:watch|embed)(?:(?:(?=\/[-a-zA-Z0-9_]{11,}(?!\S))\/)|(?:\S*v=|v\/)))([-a-zA-Z0-9_]{11,})'
+    if re.match(regex,url):
         return True
-    else:
-        return False
+    return False
 
 with st.sidebar:
     st.image('assets/icon1.png',width=270,use_column_width=False)
