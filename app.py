@@ -28,8 +28,8 @@ with st.container():
     # add button
     # check if button is clicked
     if st.button("Summarize"):
-        progress_bar=st.progress(10,text='Downloading video...')
         if check_url(text):
+            progress_bar=st.progress(10,text='Downloading video...')
             video_path= download_video(text)
             if video_path is None:
                 st.error("Please enter a valid Youtube video link.")
