@@ -1,6 +1,6 @@
 # YouTube Summarizer App
 This app allows users to generate a summary of a whole YouTube video using pytube to download the video's audio in mp4 format, moviepy to convert it to mp3 format, OpenAI Audio to Text API to transcribe the audio, and Text Summarizer API to generate a summary of the transcribed text. It also features a user-friendly interface built with Streamlit.
-
+The app is hosted here: [YouTube Summarizer](https://rafayqayyum-youtube-summarizer-app-hqui9w.streamlit.app/)
 # Installation
 1. Clone the repository
 ```git clone https://github.com/Rafayqayyum/youtube-summarizer```
