@@ -14,16 +14,16 @@ with st.sidebar:
     st.subheader("Hi, I am Rafay :wave:")
     st.write("I am a software engineer and a ML enthusiast. I am passionate about building products and solving problems.")
     st.write("Find me on [Github](https://github.com/rafayqayyum) and [LinkedIn](https://www.linkedin.com/in/rafayqayyum/)")
-    st.write("This is a Youtube Video Summarizer built using [OpenAI](https://openai.com/) and [Streamlit](https://streamlit.io/).")
+    st.write("This is a YouTube Video Summarizer built using [OpenAI](https://openai.com/) and [Streamlit](https://streamlit.io/).")
     st.write("You can find the source code [here](https://github.com/Rafayqayyum/youtube-summarizer)")
 
 
 with st.container():
     # add status text
-    st.title("Youtube Video Summarizer")
-    st.subheader("Provide a Youtube video link and get a summary of the video.")
+    st.title("YouTube Video Summarizer")
+    st.subheader("Provide a Youtube video link to get the summary of video.")
     # add text input
-    text=st.text_input("Enter the Youtube video link: ")
+    text=st.text_input("Enter the YouTube video link: ")
     # add button
     # check if button is clicked
     if st.button("Summarize"):
