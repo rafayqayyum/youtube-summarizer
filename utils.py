@@ -67,7 +67,7 @@ def summarize_video(transcript):
         return None
     length= len(transcript.split())
     if length > 2000:
-        length= 2000
+        transcript=' '.join(transcript.split()[:2000])
     try:
         response = Completion.create(
         model="text-davinci-003",
