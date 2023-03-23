@@ -1,7 +1,14 @@
 import streamlit as st
 import re
 from utils import download_video, summarize_video, get_transcript, convert_video_to_audio
-st.set_page_config(page_title="Summarize a Yotube Video",page_icon='assets/icon2.png',layout='wide')
+st.set_page_config(page_title="Summarize a Youtube Video",page_icon='assets/icon2.png',layout='wide')
+supported_languages = [
+    "Afrikaans", "Arabic", "Armenian", "Azerbaijani", "Belarusian", "Bosnian", "Bulgarian", "Catalan",
+    "Chinese", "Croatian", "Czech", "Danish", "Dutch", "English", "Estonian", "Finnish", "French", "Galician",
+    "German", "Greek", "Hebrew", "Hindi", "Hungarian", "Icelandic", "Indonesian", "Italian", "Japanese", "Kannada",
+    "Kazakh", "Korean", "Latvian", "Lithuanian", "Macedonian", "Malay", "Marathi", "Maori", "Nepali", "Norwegian",
+    "Persian", "Polish", "Portuguese", "Romanian", "Russian", "Serbian", "Slovak", "Slovenian", "Spanish",
+    "Swahili", "Swedish", "Tagalog", "Tamil", "Thai", "Turkish", "Ukrainian", "Urdu", "Vietnamese", "Welsh"]
 
 def check_url(url):
     regex='(?:https?:\/\/)?(?:www\.)?youtu(?:\.be\/|be.com\/\S*(?:watch|embed)(?:(?:(?=\/[-a-zA-Z0-9_]{11,}(?!\S))\/)|(?:\S*v=|v\/)))([-a-zA-Z0-9_]{11,})'
@@ -59,5 +66,19 @@ with st.container():
         else:
             st.error("Please enter a valid Youtube video link.")
     
-        
-        
+
+# Footer section    
+with st.container():
+    st.markdown('##')
+    st.subheader("Disclaimer:")
+    st.markdown("<ol><li>This app supports Multiple Languages. However, The translation can be inaccurate.</li>\
+                <li>Youtube Video longer than 25-30 minutes will not be supported.</li>\
+                <li>Only the first 2500 words will be processed.</li>\
+                <li>The summary will always be in English.</li></ol>",unsafe_allow_html=True)
+    
+    # Show supported languages, display on hover, supported languages text is h5, and the list is ul
+st.markdown("<h4><details><summary>Supported Languages</summary><p><ul><li>" + ", &nbsp;".join(supported_languages) + "</li></ul></p></details></h4>", unsafe_allow_html=True)
+    
+    
+    
+    
