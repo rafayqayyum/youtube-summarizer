@@ -1,7 +1,7 @@
 import streamlit as st
 import re
 from utils import download_video, summarize_video, get_transcript, convert_video_to_audio
-st.set_page_config(page_title="Summarize a Youtube Video",page_icon='assets/icon2.png',layout='wide')
+st.set_page_config(page_title="Summarize a Youtube Video",page_icon='assets/icon2.png',layout='centered')
 supported_languages = [
     "Afrikaans", "Arabic", "Armenian", "Azerbaijani", "Belarusian", "Bosnian", "Bulgarian", "Catalan",
     "Chinese", "Croatian", "Czech", "Danish", "Dutch", "English", "Estonian", "Finnish", "French", "Galician",
