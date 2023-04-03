@@ -49,15 +49,22 @@ with st.container():
                     st.error("Unable to convert video to audio.")
                 else:
                     progress_bar.progress(50,text='Getting transcript...')
-                    transcript= get_transcript(audio_path)
-                    if transcript is None:
+                    status,transcript= get_transcript(audio_path)
+                    if status==False:
+                        if transcript==None:
+                            st.error("Invalid OpenAI API Key.")
+                        else:
+                            st.error(transcript)
                         st.error("Unable to get transcript.")
                     else:
                         progress_bar.progress(70,text = 'Summarizing video...')
                         # summarize video
-                        summary= summarize_video(transcript)
-                        if summary is None:
-                            st.error("Unable to summarize video.")
+                        status, summary= summarize_video(transcript)
+                        if status==False:
+                            if summary==None:
+                                st.error("Unable to summarize video.")
+                            else:
+                                st.error(summary)
                         else:
                             progress_bar.progress(80,text='Generating summary...')
                             # show summary

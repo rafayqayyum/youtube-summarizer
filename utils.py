@@ -5,7 +5,6 @@ from pytube import YouTube
 import moviepy.editor as mp
 VIDEO_PATH='videos'
 AUDIO_PATH='audios'
-openai.api_key = os.environ.get("OPENAI_API_KEY")
 def download_video(url):
     try:
         # create a directory to store the video
@@ -26,6 +25,8 @@ def download_video(url):
     except Exception as e:
         print(e)
 
+def set_openai_key(key):
+    openai.api_key=key
 
 def convert_video_to_audio(video_name):
     try:
@@ -57,14 +58,20 @@ def get_transcript(audio_file_name):
         audio_file.close()
         if os.path.exists(audio_file_name):
             os.remove(audio_file_name)
-        return transcript['text']
+        return True,transcript['text']
+    except openai.error.AuthenticationError as e:
+        return False,'Invalid OpenAI API Key'
+    except openai.error.PermissionError as e:
+        return False,'Your OpenAI API Key does not have access to this model'
+    except openai.error.RateLimitError as e:
+        return False,'OpenAI API Key Rate Limit Reached'
     except Exception as e:
         print(e)
-        return None
+        return False,None
 
 def summarize_video(transcript):
     if transcript is None:
-        return None
+        return False,None
     length= len(transcript.split())
     if length > 2500:
         transcript=' '.join(transcript.split()[:2500])
@@ -77,8 +84,14 @@ def summarize_video(transcript):
         top_p=0.8,
         frequency_penalty=0.1,
         presence_penalty=0.1)
-        return response.choices[0].text.strip()
+        return True,response.choices[0].text.strip()
+    except openai.error.AuthenticationError as e:
+        return False,'Invalid OpenAI API Key'
+    except openai.error.PermissionError as e:
+        return False,'Your OpenAI API Key does not have access to this model'
+    except openai.error.RateLimitError as e:
+        return False,'OpenAI API Key Rate Limit Reached'
     except Exception as e:
         print(e)
-        return None
+        return False, None
     
