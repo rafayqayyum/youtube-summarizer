@@ -1,6 +1,6 @@
 import streamlit as st
 import re
-from utils import download_video, summarize_video, get_transcript, convert_video_to_audio
+from utils import download_video, summarize_video, get_transcript, convert_video_to_audio,set_openai_key
 st.set_page_config(page_title="Summarize a Youtube Video",page_icon='assets/icon2.png',layout='centered')
 supported_languages = [
     "Afrikaans", "Arabic", "Armenian", "Azerbaijani", "Belarusian", "Bosnian", "Bulgarian", "Catalan",
@@ -30,11 +30,14 @@ with st.container():
     # add status text
     st.title("YouTube Video Summarizer")
     st.subheader("Provide a Youtube video link to get the summary of video.")
+    # take openai api key
+    openai_api_key=st.text_input("Enter OpenAI API Key: ",type='password')
     # add text input
     text=st.text_input("Enter the YouTube video link: ")
     # add button
     # check if button is clicked
     if st.button("Summarize"):
+        set_openai_key(openai_api_key)
         if check_url(text):
             progress_bar=st.progress(10,text='Downloading video...')
             video_path= download_video(text)
