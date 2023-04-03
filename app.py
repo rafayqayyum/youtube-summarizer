@@ -55,10 +55,9 @@ with st.container():
                     status,transcript= get_transcript(audio_path)
                     if status==False:
                         if transcript==None:
-                            st.error("Invalid OpenAI API Key.")
+                            st.error("Unable to get transcript.")
                         else:
                             st.error(transcript)
-                        st.error("Unable to get transcript.")
                     else:
                         progress_bar.progress(70,text = 'Summarizing video...')
                         # summarize video
