@@ -3,6 +3,7 @@ from openai import  Audio, Completion
 import openai
 from pytube import YouTube
 import moviepy.editor as mp
+openai.api_key=os.environ.get('OPENAI_API_KEY')
 VIDEO_PATH='videos'
 AUDIO_PATH='audios'
 def download_video(url):
@@ -24,9 +25,6 @@ def download_video(url):
         return new_out_file
     except Exception as e:
         print(e)
-
-def set_openai_key(key):
-    openai.api_key=key
 
 def convert_video_to_audio(video_name):
     try:
